@@ -4,7 +4,7 @@ const CHEAT_REVEAL_ALL = true;
 
 const ROWS_COUNT = 10;
 const COLS_COUNT = 10;
-const bombs = 10;
+const BOMBS_COUNT = 10;
 
 var defeat = false;
 var victory = false;
@@ -25,9 +25,9 @@ for (var row = 0; row < ROWS_COUNT; row++) {
   }
 }
 
-for (let i = 0; i < bombs; i++) {
-  cells[Math.floor(Math.random() * bombs)][
-    Math.floor(Math.random() * bombs)
+for (let i = 0; i < BOMBS_COUNT; i++) {
+  cells[Math.floor(Math.random() * BOMBS_COUNT)][
+    Math.floor(Math.random() * BOMBS_COUNT)
   ].isBomb = true;
 }
 
