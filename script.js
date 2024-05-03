@@ -1,7 +1,6 @@
-
 // Set this constant to true to debug the placement of bombs without
 // having to click on all cells to reveal them.
-const CHEAT_REVEAL_ALL = false;
+const CHEAT_REVEAL_ALL = true;
 
 const ROWS_COUNT = 10;
 const COLS_COUNT = 10;
@@ -27,9 +26,9 @@ for (var row = 0; row < ROWS_COUNT; row++) {
 
 //
 // TODO: Task 1 - add some bombs at fixed positions.
-// cells[0][1].isBomb = true;
-// cells[5][4].isBomb = true;
-// cells[9][9].isBomb = true;
+cells[0][1].isBomb = true;
+cells[5][4].isBomb = true;
+cells[9][9].isBomb = true;
 
 //
 // TODO: Task 2 - Comment out the code of task 1. Instead of adding bombs in fixed places, add 10 of them in random places.
@@ -37,10 +36,8 @@ for (var row = 0; row < ROWS_COUNT; row++) {
 //                other constants.
 //
 
-
 // Once the game has been initialized, we "render" it.
 render();
-
 
 //
 // Game functions definitions
@@ -50,11 +47,9 @@ function discoverCell(row, col) {
   //
   // TODO: Task 5 - Reveal cells when clicked.
   //
-
   //
   // TODO: Task 6 - Discover neighbor cells recursively, as long as there are no adjacent bombs to the current cell.
   //
-
   //
   // TODO: Task 8 - Implement defeat. If the player "discovers" a bomb (clicks on it without holding shift), set the variable defeat to true.
   //
@@ -72,7 +67,7 @@ function flagCell(row, col) {
 function countAdjacentBombs(row, col) {
   //
   // TODO: Task 4 - Adjacent bombs are bombs in cells touching our cell (also diagonally). Implement this function
-  //                so that it returns the count of adjacent cells with bombs in them. 
+  //                so that it returns the count of adjacent cells with bombs in them.
   //
   return 1;
 }
@@ -150,30 +145,32 @@ function render() {
         }
       } else {
         if (cell.hasBeenFlagged) {
-          cellText = "🚩"
+          cellText = "🚩";
         }
       }
       html += `<div class="cell ${cssClass}" style="color:${textColor}" onclick="onCellClicked(${row}, ${col}, event)">${cellText}</div>`;
     }
-    html += "</div>"
+    html += "</div>";
   }
   playfield.innerHTML = html;
 
   // Defeat screen
   var body = document.getElementsByTagName("body")[0];
   if (defeat) {
-    body.classList.add("defeat")
+    body.classList.add("defeat");
   }
 
   // Victory screen
   if (victory) {
-    body.classList.add("victory")
+    body.classList.add("victory");
   }
 
   // Update stats
   document.getElementById("bombs-count").innerText = getBombsCount().toString();
-  document.getElementById("cleared-cells-count").innerText = getClearedCells().toString();
-  document.getElementById("total-cells-to-clear").innerText = getTotalCellsToClear().toString();
+  document.getElementById("cleared-cells-count").innerText =
+    getClearedCells().toString();
+  document.getElementById("total-cells-to-clear").innerText =
+    getTotalCellsToClear().toString();
 
   // Update message
   document.getElementById("message").innerHTML = getMessage();
