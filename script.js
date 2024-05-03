@@ -29,10 +29,6 @@ for (let i = 0; i <= BOMBS_COUNT; i++) {
 
 render();
 
-//
-// Game functions definitions
-//
-
 function discoverCell(row, col) {
   //
   // TODO: Task 5 - Reveal cells when clicked.
@@ -52,14 +48,27 @@ function flagCell(row, col) {
   //
 }
 
-// This function is called once for each cell when rendering the game. The row and col of the current cell is
-// passed to the functionn
 function countAdjacentBombs(row, col) {
-  //
-  // TODO: Task 4 - Adjacent bombs are bombs in cells touching our cell (also diagonally). Implement this function
-  //                so that it returns the count of adjacent cells with bombs in them.
-  //
-  return 1;
+  let adjacentBombs = 0;
+
+  const numRows = cells.length;
+  const numCols = cells[0].length;
+
+  for (let i = Math.max(0, row - 1); i <= Math.min(row + 1, numRows - 1); i++) {
+    for (
+      let j = Math.max(0, col - 1);
+      j <= Math.min(col + 1, numCols - 1);
+      j++
+    ) {
+      if (i === row && j === col) continue;
+
+      if (cells[i][j].isBomb) {
+        adjacentBombs++;
+      }
+    }
+  }
+
+  return adjacentBombs;
 }
 
 function getBombsCount() {
