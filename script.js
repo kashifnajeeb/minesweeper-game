@@ -61,8 +61,7 @@ function discoverCell(row, col) {
 
   discoverNeighbors(row, col);
 
-  // TODO: Task 8 - Implement defeat. If the player "discovers" a bomb (clicks on it without holding shift), set the variable defeat to true.
-  //
+  cells[row][col].isBomb && (defeat = true);
 }
 
 function flagCell(row, col) {
