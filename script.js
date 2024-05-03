@@ -97,17 +97,19 @@ function getBombsCount() {
 }
 
 function getClearedCells() {
-  //
-  // TODO: Task 9 - Implement stats: the counters currently always display 0, calculate and return the relevant values.
-  //
-  return 0;
+  let clearedCount = 0;
+  for (let row = 0; row < ROWS_COUNT; row++) {
+    for (let col = 0; col < COLS_COUNT; col++) {
+      if (cells[row][col].discovered) {
+        clearedCount++;
+      }
+    }
+  }
+  return clearedCount;
 }
 
 function getTotalCellsToClear() {
-  //
-  // TODO: Task 9 - Implement stats: the counters currently always display 0, calculate and return the relevant values.
-  //
-  return 0;
+  return ROWS_COUNT * COLS_COUNT - getBombsCount();
 }
 
 function checkForVictory() {
