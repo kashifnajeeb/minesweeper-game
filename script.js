@@ -1,22 +1,18 @@
-// Set this constant to true to debug the placement of bombs without
-// having to click on all cells to reveal them.
 const CHEAT_REVEAL_ALL = true;
 
-const ROWS_COUNT = 10;
-const COLS_COUNT = 10;
-const BOMBS_COUNT = 10;
+const ROWS_COUNT = 14;
+const COLS_COUNT = 14;
+const BOMBS_COUNT = 13;
 
 var defeat = false;
 var victory = false;
 
-// Cell constructor
 function Cell() {
   this.discovered = false;
   this.isBomb = false;
   this.hasBeenFlagged = false;
 }
 
-// Initialize cells
 var cells = Array(ROWS_COUNT);
 for (var row = 0; row < ROWS_COUNT; row++) {
   cells[row] = Array(COLS_COUNT);
@@ -25,7 +21,7 @@ for (var row = 0; row < ROWS_COUNT; row++) {
   }
 }
 
-for (let i = 0; i < BOMBS_COUNT; i++) {
+for (let i = 0; i <= BOMBS_COUNT; i++) {
   cells[Math.floor(Math.random() * BOMBS_COUNT)][
     Math.floor(Math.random() * BOMBS_COUNT)
   ].isBomb = true;
