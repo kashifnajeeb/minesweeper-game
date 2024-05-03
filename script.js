@@ -21,9 +21,9 @@ for (var row = 0; row < ROWS_COUNT; row++) {
   }
 }
 
-for (let i = 0; i <= BOMBS_COUNT; i++) {
-  cells[Math.floor(Math.random() * BOMBS_COUNT)][
-    Math.floor(Math.random() * BOMBS_COUNT)
+for (let i = 0; i < BOMBS_COUNT; i++) {
+  cells[Math.floor(Math.random() * ROWS_COUNT)][
+    Math.floor(Math.random() * COLS_COUNT)
   ].isBomb = true;
 }
 
@@ -32,9 +32,35 @@ render();
 function discoverCell(row, col) {
   cells[row][col].discovered = true;
 
-  // TODO: Task 6 - Discover neighbor cells recursively, as long as there are no adjacent bombs to the current cell.
-  //
-  //
+  function discoverNeighbors(row, col) {
+    for (
+      let i = Math.max(0, row - 1);
+      i <= Math.min(row + 1, ROWS_COUNT - 1);
+      i++
+    ) {
+      for (
+        let j = Math.max(0, col - 1);
+        j <= Math.min(col + 1, COLS_COUNT - 1);
+        j++
+      ) {
+        if (i === row && j === col) continue;
+
+        if (
+          !cells[i][j].discovered &&
+          !cells[i][j].hasBeenFlagged & !cells[i][j].isBomb
+        ) {
+          cells[i][j].discovered = true;
+
+          if (countAdjacentBombs(i, j) === 0) {
+            discoverNeighbors(i, j);
+          }
+        }
+      }
+    }
+  }
+
+  discoverNeighbors(row, col);
+
   // TODO: Task 8 - Implement defeat. If the player "discovers" a bomb (clicks on it without holding shift), set the variable defeat to true.
   //
 }
@@ -49,13 +75,14 @@ function flagCell(row, col) {
 function countAdjacentBombs(row, col) {
   let adjacentBombs = 0;
 
-  const numRows = cells.length;
-  const numCols = cells[0].length;
-
-  for (let i = Math.max(0, row - 1); i <= Math.min(row + 1, numRows - 1); i++) {
+  for (
+    let i = Math.max(0, row - 1);
+    i <= Math.min(row + 1, ROWS_COUNT - 1);
+    i++
+  ) {
     for (
       let j = Math.max(0, col - 1);
-      j <= Math.min(col + 1, numCols - 1);
+      j <= Math.min(col + 1, COLS_COUNT - 1);
       j++
     ) {
       if (i === row && j === col) continue;
