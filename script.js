@@ -65,10 +65,7 @@ function discoverCell(row, col) {
 }
 
 function flagCell(row, col) {
-  //
-  // TODO: Task 7 - Implement flags. Flags allow the player to mark cells that they think contain a bomb.
-  //                When clicking a cell and holding shift, function flagCell() will be called for you.
-  //
+  cells[row][col].hasBeenFlagged = true;
 }
 
 function countAdjacentBombs(row, col) {
