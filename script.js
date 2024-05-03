@@ -1,4 +1,4 @@
-const CHEAT_REVEAL_ALL = true;
+const CHEAT_REVEAL_ALL = false;
 
 const ROWS_COUNT = 14;
 const COLS_COUNT = 14;
@@ -30,10 +30,8 @@ for (let i = 0; i <= BOMBS_COUNT; i++) {
 render();
 
 function discoverCell(row, col) {
-  //
-  // TODO: Task 5 - Reveal cells when clicked.
-  //
-  //
+  cells[row][col].discovered = true;
+
   // TODO: Task 6 - Discover neighbor cells recursively, as long as there are no adjacent bombs to the current cell.
   //
   //
