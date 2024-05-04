@@ -30,8 +30,6 @@ for (let i = 0; i < BOMBS_COUNT; i++) {
 render();
 
 function discoverCell(row, col) {
-  cells[row][col].discovered = true;
-
   function discoverNeighbors(row, col) {
     for (
       let i = Math.max(0, row - 1);
@@ -113,11 +111,10 @@ function getTotalCellsToClear() {
 }
 
 function checkForVictory() {
-  const totalCellsToClear = getTotalCellsToClear();
+  const totalCells = ROWS_COUNT * COLS_COUNT;
+  const totalNonBombCells = totalCells - BOMBS_COUNT;
 
-  const clearedCells = getClearedCells();
-
-  if (clearedCells === totalCellsToClear) {
+  if (totalNonBombCells === getClearedCells() && !defeat) {
     victory = true;
   }
 }
